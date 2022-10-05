@@ -36,21 +36,6 @@ Route::get('/file/{path}', function ($path) {
 
 Route::get('/', [HomeController::class, 'index'])->middleware('auth')->name('index');
 
-Route::middleware(['auth','role:student','has-topics'])->group(function () {
-
-	Route::get('/profile', [HomeController::class, 'profile'])->name('profile');
-	Route::get('/course', [HomeController::class, 'course'])->name('course');
-	Route::get('/dashboard', [HomeController::class, 'dashboard'])->name('dashboard');
-	Route::get('/plan', [PlanController::class, 'index'])->name('plan');
-	Route::get('/payment/{plan_id}', [PlanController::class, 'payForm'])->name('pay');
-	Route::get('/subscribe/{id}', [PlanController::class, 'subscribe'])->name('subscribe');
-	Route::get('/lesson/{id}', [LessonController::class, 'show'])->name('show-lesson');
-
-});
-
-Route::get('/topics', [SubjectController::class, 'index'])->middleware(['auth','role:student'])->name('index');
-
-
 require __DIR__.'/auth.php';
 
 
